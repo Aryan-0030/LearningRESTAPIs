@@ -15,11 +15,10 @@ public class studentcontroller {
 
 
     @GetMapping("/student")
-    public List<studentDTO> getStudent() {
+    public studentDTO getStudent() {
         return new studentDTO(41,"abhishek", "abhishek@gmail.com");
     }
-    
-    
+
     
     @GetMapping("/student/{id}")
     public studentDTO getStudentById() {
