@@ -20,6 +20,7 @@ public class studentcontroller {
     }
     
     
+    
     @GetMapping("/student/{id}")
     public studentDTO getStudentById() {
         return new studentDTO(41,"abhishek", "abhishek@gmail.com");
