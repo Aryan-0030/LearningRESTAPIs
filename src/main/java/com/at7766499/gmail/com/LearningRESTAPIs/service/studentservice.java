@@ -4,10 +4,10 @@ import java.util.List;
 
 import com.at7766499.gmail.com.LearningRESTAPIs.entity.studentDTO;
 
-public interface Studentservice {
+public interface studentservice {
 
     List<studentDTO> getallStudents();
-    
+
 
 
 }
