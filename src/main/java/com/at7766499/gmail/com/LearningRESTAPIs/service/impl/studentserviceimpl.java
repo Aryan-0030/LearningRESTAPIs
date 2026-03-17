@@ -2,26 +2,30 @@ package com.at7766499.gmail.com.LearningRESTAPIs.service.impl;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import com.at7766499.gmail.com.LearningRESTAPIs.entity.student;
-import com.at7766499.gmail.com.LearningRESTAPIs.entity.studentDTO;
-import com.at7766499.gmail.com.LearningRESTAPIs.repository.studentrepository;
-import com.at7766499.gmail.com.LearningRESTAPIs.service.studentservice;
+import com.at7766499.gmail.com.LearningRESTAPIs.entity.Student;
+import com.at7766499.gmail.com.LearningRESTAPIs.entity.StudentDTO;
+import com.at7766499.gmail.com.LearningRESTAPIs.repository.StudentRepository;
+import com.at7766499.gmail.com.LearningRESTAPIs.service.studentServices;
 
 import lombok.RequiredArgsConstructor;
+
 @Service
 @RequiredArgsConstructor
- 
-public class StudentServiceImpl implements studentservice {
+public class StudentserviceImpl implements studentServices {
 
-    private final studentrepository studentrepository;
+    private final StudentRepository studentRepository;
+    private final ModelMapper map;
+
     @Override
-    public List<StudentDto> getAllStudents() {
-        List<student> students studentrepository.findAll();
-        List<studentDTO> studentlList = students.stream().map(student student -> new studentDTO(student.getid(),student.getName(),student.getEmail))
-        return List.of();
+    public List<StudentDTO> getAllStudents() {
 
+        List<Student> students = studentRepository.findAll();
+
+        return students.stream()
+                .map(student -> map.map(student, StudentDTO.class))
+                .toList();
     }
-
 }

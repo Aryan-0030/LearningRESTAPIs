@@ -1,39 +1,29 @@
 package com.at7766499.gmail.com.LearningRESTAPIs.controller;
 
-import org.springframework.web.bind.annotation.RestController;
-
-import com.at7766499.gmail.com.LearningRESTAPIs.entity.studentDTO;
-import com.at7766499.gmail.com.LearningRESTAPIs.repository.studentrepository;
-
 import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
-
+import com.at7766499.gmail.com.LearningRESTAPIs.entity.StudentDTO;
+import com.at7766499.gmail.com.LearningRESTAPIs.service.impl.StudentserviceImpl;
 
 @RestController
-public class studentcontroller {
+@RequestMapping("/students")
+public class StudentController {
 
+    private final StudentserviceImpl studentserviceImpl;
 
-    private final studentrepository studentrepository;
-
-    public studentcontroller(studentrepository studentrepository) {
-       this.studentrepository  = studentrepository; 
+    public StudentController(StudentserviceImpl studentserviceImpl) {
+        this.studentserviceImpl = studentserviceImpl;
     }
 
-    }
-    @GetMapping("/student")
-    public List<student> getStudent() {
-        return studentrepository.findAll()
-        
+    @GetMapping
+    public List<StudentDTO> getStudents() {
+        return studentserviceImpl.getAllStudents();
     }
 
-    
-    @GetMapping("/student/{id}")
-    public studentDTO getStudentById() {
-        return new studentDTO(41,"abhishek", "abhishek@gmail.com");
-    }
-    
-    
+    // @GetMapping("/{id}")
+    // public StudentDTO getStudentById(@PathVariable Long id) {
+    //     return studentserviceImpl.getStudentById(id);
+    // }
 }
-
